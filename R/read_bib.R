@@ -14,17 +14,26 @@ read_bib <- function(file){
 
   data <- read_lines(file = file, skip = 0, n_max = -1L)
 
-  start <- c(0, which(data == ""))+1
-  end <- c(which(data == ""), length(data)+1)-1
-
-  s <- list()
-  for (i in 1:length(end)) s[[i]] <- c(start[i], end[i])
   n <- list(
-   YR = "^YR ", A1 = "^A1 ",
-   T1 = "^T1 ", JF = "^JF ",
-   AB = "^AB ", K1 = "^K1 ",
-   AD = "^AD ", SN = "^SN "
-  )
+  RT = "^RT ",
+  T1 = "^T1 ", A1 = "^A1 ", 
+  YR = "^YR ", JF = "^JF ",
+  AB = "^AB ", K1 = "^K1 ",
+  AD = "^AD ", SN = "^SN "
+)
+
+ck <- lapply(n, function(x){
+  str_detect(data, x)
+})
+
+data <- data[ck$RT|ck$YR|ck$A1|ck$T1|ck$JF|ck$AB|ck$K1|ck$AD|ck$SN]
+
+start <- which(str_detect(data, "^RT "))
+end <- c(start[-1]-1, length(data))
+
+s <- list()
+for (i in 1:length(end)) s[[i]] <- c(start[i], end[i])
+  
   data2 <- lapply(s, function(x) {
     data <- data[x[1]:x[2]]
     res <- lapply(n, function(y) {
