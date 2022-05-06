@@ -3,10 +3,7 @@
 #'
 #' @title get_keywords
 #' @param data file
-#' @importFrom jiebaR segment
-#' @importFrom jiebaR worker
-#' @importFrom dplyr %>%
-#' @importFrom jiebaR filter_segment
+#' @importFrom stringr str_split
 #' @return A list.
 #' @author Yuanlong Hu
 #' @export
@@ -25,8 +22,14 @@ get_keywords <- function(data){
       keywords <- str_split(data$K1, ";",simplify = F)
     }
       names(keywords) <- data$ID
-
+      return(keywords)
     })
   keywords <- Reduce(c, keywords)
+  keywords <- lapply(keywords, function(x){
+    x <- x[x != "" ]
+    x <- x[x != " "]
+    x <- x[!is.na(x)]
+    return(x)
+  })
   return(keywords)
 }
