@@ -15,7 +15,8 @@
 get_keywords <- function(data){
 
   source <- unique(data$source)
-  names(as.list(source)) <- source
+  source <- as.list(source)
+  names(source) <- source
   keywords <- lapply(source, function(x){
     data <- data[data$source == x,]
     if (x == "WanFang") {
