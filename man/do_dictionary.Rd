@@ -4,7 +4,7 @@
 \alias{do_dictionary}
 \title{do_dictionary}
 \usage{
-do_dictionary(path)
+do_dictionary(path, add_words = NULL)
 }
 \arguments{
 \item{data}{path}

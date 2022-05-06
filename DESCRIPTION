@@ -1,6 +1,6 @@
 Package: bibminer
 Title: Chinese Literature Analysis And Visualization
-Version: 0.1.1
+Version: 0.1.2
 Authors@R: 
     person("Yuanlong", "Hu", , "huyuanlong1996@163.com", role = c("aut", "cre"),
            comment = c(ORCID = "YOUR-ORCID-ID"))
@@ -11,8 +11,10 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
 Imports: 
     cidian (>= 0.1),
+    dplyr,
     jiebaR,
     readr,
-    stringr
-Remotes:  
+    stringr,
+    widyr
+Remotes: 
     YuanlongHu/cidian
