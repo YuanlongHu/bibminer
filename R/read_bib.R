@@ -13,7 +13,7 @@
 
 read_bib <- function(file, source="CNKI"){
 
-  if(source %in% c("CNKI","WanFang","VIP")) stop("The source must be one of the `CNKI`, `WanFang`, and `VIP`")
+  if(!source %in% c("CNKI","WanFang","VIP")) stop("The source must be one of the `CNKI`, `WanFang`, and `VIP`")
   data <- read_lines(file = file, skip = 0, n_max = -1L)
 
   n <- list(
