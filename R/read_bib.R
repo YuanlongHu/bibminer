@@ -47,6 +47,6 @@ for (i in 1:length(end)) s[[i]] <- c(start[i], end[i])
     })
  data2 <- as.data.frame(Reduce(rbind,data2))
  data2$source <- source
- data2$ID <- paste0(data$JF, data$YR,"_", 1:nrow(data2))
+ data2$ID <- paste0(data2$JF, data2$YR,"_", 1:nrow(data2))
  return(data2)
 }
