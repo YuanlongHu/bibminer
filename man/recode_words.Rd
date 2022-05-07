@@ -4,12 +4,14 @@
 \alias{recode_words}
 \title{recode_words}
 \usage{
-recode_words(list, re_data)
+recode_words(list, rep, remove)
 }
 \arguments{
 \item{list}{list}
 
-\item{re_data}{re_data}
+\item{rep}{rep}
+
+\item{remove}{remove words}
 }
 \value{
 A list.

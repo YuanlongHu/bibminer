@@ -3,20 +3,21 @@
 #'
 #' @title recode_words
 #' @param list list
-#' @param re_data re_data
+#' @param rep rep
+#' @param remove remove words
 #' @importFrom dplyr recode
 #' @importFrom rlang !!!
 #' @return A list.
 #' @author Yuanlong Hu
 #' @export
 
-recode_words <- function(list, re_data){
+recode_words <- function(list, rep, remove){
   re_words <- re_data[,2]
   names(re_words) <- re_data[,1]
 
   lapply(list, function(x){
+    x <- x[x != remove]
     x <- recode(x, !!!re_words)
-    x <- x[!is.na(x)]
     x <- unique(x)
     return(x)
   })
