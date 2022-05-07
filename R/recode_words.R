@@ -16,7 +16,7 @@ recode_words <- function(list, rep, remove){
   names(re_words) <- rep[,1]
 
   lapply(list, function(x){
-    x <- x[x != remove]
+    x <- x[!x %in% remove]
     x <- recode(x, !!!re_words)
     x <- unique(x)
     return(x)
