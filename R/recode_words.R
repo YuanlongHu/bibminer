@@ -12,8 +12,8 @@
 #' @export
 
 recode_words <- function(list, rep, remove){
-  re_words <- re_data[,2]
-  names(re_words) <- re_data[,1]
+  re_words <- rep[,2]
+  names(re_words) <- rep[,1]
 
   lapply(list, function(x){
     x <- x[x != remove]
