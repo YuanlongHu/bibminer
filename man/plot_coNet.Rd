@@ -4,7 +4,14 @@
 \alias{plot_coNet}
 \title{plot_coNet}
 \usage{
-plot_coNet(graph, freq_node = 1, freq_edge = 1, w1 = 10, w2 = 10)
+plot_coNet(
+  graph,
+  freq_node = 2,
+  freq_edge = 2,
+  w1 = 10,
+  w2 = 10,
+  remove_single = TRUE
+)
 }
 \arguments{
 \item{graph}{graph}
@@ -16,6 +23,8 @@ plot_coNet(graph, freq_node = 1, freq_edge = 1, w1 = 10, w2 = 10)
 \item{w1}{w1}
 
 \item{w2}{w2}
+
+\item{remove_single}{remove_single}
 }
 \value{
 A igraph
