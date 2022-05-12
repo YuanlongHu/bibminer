@@ -13,16 +13,16 @@
 coNet <- function(list){
   keywords <- NULL
   for (i in 1:length(list)) {
-    list1 <- data.frame(term = rep(names(list)[i]),
+    list1 <- data.frame(term = names(list)[i],
                         words = list[[i]])
     keywords <- rbind(keywords, list1)
   }
 
-  freq <- table(unlist(keywords)) %>% as.data.frame()
-  names(freq) <- c("name", "size")
+  freq <- table(unlist(keywords$words)) %>% as.data.frame()
+  names(freq) <- c("name", "freq")
 
   keywords <- pairwise_count(keywords, words, term, sort = TRUE)
-  names(keywords) <- c("from", "to", "width")
+  names(keywords) <- c("from", "to", "freq")
   net <- graph.data.frame(keywords, directed = F, vertices = freq)
   net <- simplify(net, edge.attr.comb="mean")
   return(net)
