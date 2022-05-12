@@ -10,7 +10,7 @@ coNet(list)
 \item{list}{list}
 }
 \value{
-A list.
+A igraph
 }
 \description{
 coNet
