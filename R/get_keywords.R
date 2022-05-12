@@ -29,6 +29,11 @@ get_keywords <- function(data){
     x <- x[x != "" ]
     x <- x[x != " "]
     x <- x[!is.na(x)]
+    x <- gsub("《", "", x)
+    x <- gsub("》", "", x)
+    x <- gsub("@", "", x)
+    x <- gsub("@", "", x)
+    x <- gsub("@", "", x)
     return(x)
   })
   return(keywords)

@@ -4,14 +4,12 @@
 \alias{get_words}
 \title{get_words}
 \usage{
-get_words(data, user, remove, add_T1 = TRUE, add_K1 = TRUE)
+get_words(data, user, add_T1 = TRUE, add_K1 = TRUE)
 }
 \arguments{
 \item{data}{file}
 
 \item{user}{A path to user dictionary}
-
-\item{remove}{remove}
 
 \item{add_T1}{add T1}
 

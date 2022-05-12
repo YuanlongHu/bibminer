@@ -12,5 +12,6 @@ freq_words <- function(list){
 
   freq <- table(unlist(list)) %>% as.data.frame()
   names(freq) <- c("Words", "Freq")
+  freq <- freq[order(freq$Freq, decreasing = TRUE),]
   return(freq)
 }

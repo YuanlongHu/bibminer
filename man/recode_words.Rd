@@ -4,7 +4,7 @@
 \alias{recode_words}
 \title{recode_words}
 \usage{
-recode_words(list, rep, remove)
+recode_words(list, rep = NULL, remove = NULL)
 }
 \arguments{
 \item{list}{list}

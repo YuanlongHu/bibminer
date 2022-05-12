@@ -11,14 +11,22 @@
 #' @author Yuanlong Hu
 #' @export
 
-recode_words <- function(list, rep, remove){
-  re_words <- rep[,2]
-  names(re_words) <- rep[,1]
-
-  lapply(list, function(x){
-    x <- x[!x %in% remove]
-    x <- recode(x, !!!re_words)
-    x <- unique(x)
-    return(x)
-  })
+recode_words <- function(list, rep=NULL, remove=NULL){
+  if(!is.null(rep)) {
+    re_words <- rep[,2]
+    names(re_words) <- rep[,1]
+    data <- lapply(list, function(x){
+                     x <- recode(x, !!!re_words)
+                     x <- unique(x)
+                     return(x)
+                  })
+  }
+  
+  if(!is.null(remove)) {
+    data <- lapply(list, function(x){
+        x <- x[!x %in% remove]
+        return(x)
+     })
+  }
+   return(data)
 }
