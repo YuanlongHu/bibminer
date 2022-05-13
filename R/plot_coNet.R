@@ -26,7 +26,7 @@
 plot_coNet <- function(graph, freq_node = 2, freq_edge = 2, w1=10, w2=10, remove_single=TRUE){
 
   graph <- delete.vertices(graph, which(V(graph)$freq<freq_node))
-  graph <- delete.edges(graph, which(E(graph)$freq<freq_node))
+  graph <- delete.edges(graph, which(E(graph)$freq<freq_edge))
 
   if(remove_single) graph <- delete.vertices(graph, which(degree(graph)==0))
 
@@ -36,7 +36,7 @@ plot_coNet <- function(graph, freq_node = 2, freq_edge = 2, w1=10, w2=10, remove
   visNetwork(nodes = data_visNetwork$nodes,
              edges = data_visNetwork$edges,
              height = "700px", width = "100%") %>%
-    visOptions(selectedBy = "type",
+    visOptions(#selectedBy = "type",
                manipulation = TRUE,
                highlightNearest = TRUE)%>%
     visEdges(smooth = FALSE) %>%
