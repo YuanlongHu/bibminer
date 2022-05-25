@@ -11,11 +11,11 @@
 
 get_keywords <- function(data){
 
-  source <- unique(data$source)
+  source <- unique(data$DS)
   source <- as.list(source)
   names(source) <- source
   keywords <- lapply(source, function(x){
-    data <- data[data$source == x,]
+    data <- data[data$DS == x,]
     if (x == "WanFang") {
       keywords <- str_split(data$K1, " ",simplify = F)
     }else{

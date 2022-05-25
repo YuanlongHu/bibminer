@@ -4,12 +4,10 @@
 \alias{read_bib}
 \title{read_bib}
 \usage{
-read_bib(file, source = "CNKI")
+read_bib(file)
 }
 \arguments{
 \item{file}{file}
-
-\item{source}{one of the "CNKI","WanFang", and "VIP".}
 }
 \value{
 A list.

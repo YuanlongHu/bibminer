@@ -3,17 +3,17 @@
 #'
 #' @title read_bib
 #' @param file file
-#' @param source one of the "CNKI","WanFang", and "VIP".
 #' @importFrom readr read_lines
 #' @importFrom stringr str_detect
 #' @importFrom dplyr %>%
+#' @importFrom dplyr recode
 #' @return A list.
 #' @author Yuanlong Hu
 #' @export
 
-read_bib <- function(file, source="CNKI"){
+read_bib <- function(file){
 
-  if(!source %in% c("CNKI","WanFang","VIP")) stop("The source must be one of the `CNKI`, `WanFang`, and `VIP`")
+  #if(!source %in% c("CNKI","WanFang","VIP")) stop("The source must be one of the `CNKI`, `WanFang`, and `VIP`")
   data <- read_lines(file = file, skip = 0, n_max = -1L)
 
   n <- list(
@@ -21,14 +21,15 @@ read_bib <- function(file, source="CNKI"){
   T1 = "^T1 ", A1 = "^A1 ",
   YR = "^YR ", JF = "^JF ",
   AB = "^AB ", K1 = "^K1 ",
-  AD = "^AD ", SN = "^SN "
+  AD = "^AD ", SN = "^SN ",
+  DS = "^DS "
 )
 
 ck <- lapply(n, function(x){
   str_detect(data, x)
 })
 
-data <- data[ck$RT|ck$YR|ck$A1|ck$T1|ck$JF|ck$AB|ck$K1|ck$AD|ck$SN]
+data <- data[ck$RT|ck$YR|ck$A1|ck$T1|ck$JF|ck$AB|ck$K1|ck$AD|ck$SN|ck$DS]
 
 start <- which(str_detect(data, "^RT "))
 end <- c(start[-1]-1, length(data))
@@ -46,7 +47,8 @@ for (i in 1:length(end)) s[[i]] <- c(start[i], end[i])
     return(res)
     })
  data2 <- as.data.frame(Reduce(rbind,data2))
- data2$source <- source
+ #data2$source <- source
+ data2$DS <- recode(data2$DS, "万方数据"="WanFang", "重庆维普"="VIP")
  data2$ID <- paste0(data2$JF, data2$YR,"_", 1:nrow(data2))
  return(data2)
 }
